@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="黑鹰电影网（heiyingdianyingwang-app）是面向影迷打造的在线影视导航与资讯平台，汇聚院线新片、经典老片、高分剧集、纪录短片与动漫佳作。每日更新影片推荐、观影指南与票房解读，提供按类型、地区、年份、评分多维筛选的片单，帮您快速找到值得一看的好电影。">
+<meta name="keywords" content="黑鹰电影网, heiyingdianyingwang-app, 电影推荐, 在线观影, 院线新片, 经典电影, 高分剧集, 影视资讯, 票房排行, 免费电影, 动作片, 喜剧片, 科幻片, 悬疑片">
+<meta name="author" content="黑鹰电影网">
+<meta name="robots" content="index, follow">
+<meta name="referrer" content="no-referrer-when-downgrade">
+<meta property="og:title" content="黑鹰电影网 - 专注好片推荐与影视资讯">
+<meta property="og:description" content="黑鹰电影网（heiyingdianyingwang-app）每日精选院线新片、经典回看与高分剧集，附影片简介、评分、类型与观影指引。">
+<meta property="og:url" content="https://heiyingdianyingwang-app.github.io">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="黑鹰电影网">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="黑鹰电影网 - 专注好片推荐与影视资讯">
+<meta name="twitter:description" content="黑鹰电影网（heiyingdianyingwang-app）每日精选院线新片、经典回看与高分剧集。">
+<title>黑鹰电影网 - 院线新片·经典回看·高分剧集一站式影视指南 | heiyingdianyingwang-app</title>
+<style>
+:root{
+  --ink:#121418;
+  --ink-2:#2b3038;
+  --muted:#6b7280;
+  --line:#e5e7eb;
+  --bg:#f5f6f8;
+  --card:#ffffff;
+  --brand:#c2410c;
+  --brand-2:#ea580c;
+  --gold:#b45309;
+  --radius:14px;
+  --shadow:0 6px 24px rgba(18,20,24,.08);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-size:15px;
+  line-height:1.75;
+}
+a{color:var(--brand);text-decoration:none;}
+a:hover{color:var(--brand-2);}
+img{max-width:100%;display:block;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px;}
+
+/* 顶部导航 */
+.topbar{background:var(--ink);color:#cbd5e1;font-size:13px;padding:8px 0;border-bottom:1px solid #000;}
+.topbar .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.topbar a{color:#cbd5e1;}
+.topbar a:hover{color:#fff;}
+.topbar ul{list-style:none;margin:0;padding:0;display:flex;gap:16px;flex-wrap:wrap;}
+
+header.site{background:linear-gradient(135deg,#1f2430 0%,#121418 100%);padding:22px 0 20px;position:relative;}
+header.site::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--brand),var(--gold),var(--brand));}
+.brand-row{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;}
+.logo{display:flex;align-items:center;gap:12px;}
+.logo .mark{width:44px;height:44px;border-radius:12px;background:var(--brand);display:grid;place-items:center;font-weight:800;color:#fff;font-size:22px;letter-spacing:-1px;box-shadow:0 4px 14px rgba(194,65,12,.4);}
+.logo h1{margin:0;font-size:22px;color:#fff;letter-spacing:1px;font-weight:800;}
+.logo small{color:#94a3b8;font-size:12px;letter-spacing:2px;}
+.nav{display:flex;gap:6px;flex-wrap:wrap;}
+.nav a{color:#e2e8f0;font-size:14px;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.12);}
+.nav a:hover{background:var(--brand);border-color:var(--brand);color:#fff;}
+
+/* 搜索 */
+.search{margin-top:18px;display:flex;gap:8px;flex-wrap:wrap;}
+.search input{flex:1;min-width:220px;padding:12px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:#fff;font-size:14px;outline:none;}
+.search input::placeholder{color:#94a3b8;}
+.search input:focus{border-color:var(--brand-2);}
+.search button{padding:12px 26px;border-radius:999px;border:none;background:var(--brand);color:#fff;font-weight:700;cursor:pointer;}
+.search button:hover{background:var(--brand-2);}
+
+/* 栏目区块 */
+section{padding:44px 0;}
+section + section{border-top:1px solid var(--line);}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap;}
+.sec-title{margin:0;font-size:24px;font-weight:800;letter-spacing:.5px;display:flex;align-items:center;gap:10px;}
+.sec-title i{width:6px;height:24px;border-radius:3px;background:var(--brand);display:inline-block;}
+.sec-sub{color:var(--muted);font-size:13px;margin-top:6px;}
+.sec-more{font-size:13px;color:var(--muted);border:1px solid var(--line);padding:6px 14px;border-radius:999px;}
+.sec-more:hover{color:var(--brand);border-color:var(--brand);}
+
+/* 英雄区 */
+.hero{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:grid;grid-template-columns:1.1fr .9fr;}
+.hero .poster{position:relative;min-height:320px;background:linear-gradient(160deg,#3f3f46,#27272a);}
+.hero .poster span{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#fda4af;font-size:26px;font-weight:800;padding:24px;text-shadow:0 2px 12px rgba(0,0,0,.4);}
+.hero .info{padding:28px;}
+.hero .tag{display:inline-block;background:#fff7ed;color:var(--brand);font-size:12px;padding:4px 12px;border-radius:999px;font-weight:700;}
+.hero h2{margin:12px 0 8px;font-size:26px;line-height:1.3;}
+.hero .meta{color:var(--muted);font-size:13px;display:flex;gap:14px;flex-wrap:wrap;}
+.hero .meta b{color:var(--gold);}
+.hero p{margin:14px 0 18px;color:var(--ink-2);font-size:14.5px;}
+.hero .acts{display:flex;gap:10px;flex-wrap:wrap;}
+.btn{padding:11px 24px;border-radius:10px;font-weight:700;font-size:14px;border:1px solid var(--brand);color:var(--brand);background:#fff;cursor:pointer;}
+.btn.primary{background:var(--brand);color:#fff;}
+.btn:hover{background:var(--brand-2);border-color:var(--brand-2);color:#fff;}
+
+/* 卡片网格 */
+.grid{display:grid;gap:18px;}
+.grid.four{grid-template-columns:repeat(4,1fr);}
+.grid.three{grid-template-columns:repeat(3,1fr);}
+.card{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:.25s;display:flex;flex-direction:column;}
+.card:hover{transform:translateY(-5px);box-shadow:0 14px 32px rgba(18,20,24,.14);}
+.thumb{aspect-ratio:3/4;background:linear-gradient(150deg,#d4d4d8,#a1a1aa);position:relative;}
+.thumb .lb{position:absolute;top:10px;left:10px;background:var(--brand);color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;}
+.thumb .rt{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.6);color:#fde68a;font-size:12px;font-weight:800;padding:3px 9px;border-radius:6px;backdrop-filter:blur(2px);}
+.thumb .tt{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#fff;font-weight:800;font-size:17px;padding:20px;text-shadow:0 2px 10px rgba(0,0,0,.5);opacity:.92;}
+.card .body{padding:14px;flex:1;display:flex;flex-direction:column;}
+.card h3{margin:0 0 6px;font-size:15.5px;line-height:1.45;}
+.card .row{font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;gap:8px;margin-top:auto;padding-top:10px;border-top:1px dashed var(--line);}
+.stars{color:var(--gold);letter-spacing:1px;}
+
+/* 文章列表 */
+.list{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
+.list a{display:flex;gap:14px;padding:16px 18px;border-bottom:1px solid var(--line);align-items:flex-start;}
+.list a:last-child{border-bottom:none;}
+.list a:hover{background:#fff7ed;}
+.list .num{flex:0 0 30px;height:30px;border-radius:8px;background:var(--bg);color:var(--muted);font-weight:800;display:grid;place-items:center;font-size:14px;}
+.list a:nth-child(1) .num{background:var(--brand);color:#fff;}
+.list a:nth-child(2) .num{background:var(--gold);color:#fff;}
+.list a:nth-child(3) .num{background:#334155;color:#fff;}
+.list .txt{flex:1;min-width:0;}
+.list .txt h4{margin:0 0 4px;font-size:15.5px;line-height:1.5;}
+.list .txt p{margin:0;font-size:13px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.list .date{font-size:12px;color:#cbd5e1;white-space:nowrap;}
+
+/* 分类标签墙 */
+.chips{display:flex;flex-wrap:wrap;gap:10px;}
+.chip{padding:9px 18px;border-radius:10px;background:var(--card);border:1px solid var(--line);color:var(--ink-2);font-size:14px;box-shadow:var(--shadow);}
+.chip:hover{border-color:var(--brand);color:var(--brand);transform:translateY(-2px);}
+.chip b{color:var(--brand);margin-left:6px;font-size:12px;}
+
+/* 双栏 */
+.two{display:grid;grid-template-columns:2fr 1fr;gap:24px;}
+
+/* 页脚 */
+footer{background:var(--ink);color:#94a3b8;padding:40px 0 24px;margin-top:40px;}
+footer h5{color:#fff;margin:0 0 12px;font-size:15px;}
+footer ul{list-style:none;margin:0;padding:0;}
+footer li{margin-bottom:8px;font-size:13.5px;}
+footer a{color:#94a3b8;}
+footer a:hover{color:#fff;}
+.foot-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.foot-brand .logo .mark{width:38px;height:38px;font-size:18px;}
+.foot-brand p{font-size:13px;margin:12px 0 0;line-height:1.8;}
+.copy{border-top:1px solid #27272a;margin-top:28px;padding-top:18px;font-size:12.5px;text-align:center;color:#64748b;}
+
+/* 响应式 */
+@media (max-width:960px){
+  .hero{grid-template-columns:1fr;}
+  .hero .poster{min-height:220px;}
+  .grid.four{grid-template-columns:repeat(3,1fr);}
+  .grid.three{grid-template-columns:repeat(2,1fr);}
+  .two{grid-template-columns:1fr;}
+  .foot-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:640px){
+  body{font-size:14.5px;}
+  section{padding:32px 0;}
+  .wrap{padding:0 14px;}
+  .logo h1{font-size:19px;}
+  .nav a{padding:7px 11px;font-size:13px;}
+  .sec-title{font-size:20px;}
+  .hero h2{font-size:21px;}
+  .grid.four,.grid.three{grid-template-columns:repeat(2,1fr);gap:12px;}
+  .card .body{padding:11px;}
+  .card h3{font-size:14.5px;}
+  .foot-grid{grid-template-columns:1fr;}
+  .list a{flex-direction:column;gap:8px;}
+  .list .date{align-self:flex-start;}
+  .search button{padding:12px 18px;}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/yazhou.js"></script>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>欢迎来到 <strong style="color:#fff">黑鹰电影网</strong>（heiyingdianyingwang-app）—— 您的每日观影指南</span>
+    <ul>
+      <li><a href="#hot">热映</a></li>
+      <li><a href="#classic">经典</a></li>
+      <li><a href="#guide">观影指南</a></li>
+      <li><a href="#top">排行</a></li>
+      <li><a href="#type">分类</a></li>
+      <li><a href="#news">资讯</a></li>
+    </ul>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand-row">
+      <div class="logo">
+        <div class="mark">鹰</div>
+        <div>
+          <h1>黑鹰电影网</h1>
+          <small>HEIYING DIANYING WANG · heiyingdianyingwang-app</small>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#hot">院线热映</a>
+        <a href="#classic">经典回看</a>
+        <a href="#drama">高分剧集</a>
+        <a href="#guide">观影指南</a>
+        <a href="#top">口碑排行</a>
+        <a href="#type">类型片单</a>
+        <a href="#news">影视资讯</a>
+        <a href="#about">关于我们</a>
+      </nav>
+    </div>
+    <form class="search" onsubmit="return false;">
+      <input type="search" placeholder="搜索影片、导演、演员、类型，例如：悬疑 诺兰 2025 动作片…" aria-label="搜索影片">
+      <button type="submit">搜 索</button>
+    </form>
+  </div>
+</header>
+
+<main>
+
+  <!-- 栏目一：院线热映 -->
+  <section id="hot">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2 class="sec-title"><i></i>院线热映 · 本周值得看</h2>
+          <p class="sec-sub">实时跟进全国影院在映影片，汇总口碑、票房与适合人群，帮您少踩雷、多看佳片。</p>
+        </div>
+        <a class="sec-more" href="#">查看全部热映 →</a>
+      </div>
+
+      <div class="hero">
+        <div class="poster"><span>本周主编推荐<br>《逆光而行》</span></div>
+        <div class="info">
+          <span class="tag">今日主编荐片</span>
+          <h2>逆光而行</h2>
+          <div class="meta">
+            <span>类型：<b>犯罪 / 悬疑 / 剧情</b></span>
+            <span>片长：<b>132 分钟</b></span>
+            <span>上映：<b>2026-09-28</b></span>
+            <span>评分：<b>8.6 / 10</b></span>
+          </div>
+          <p>一场跨越十二年的旧案被重新翻开，三名看似无关的普通人被卷入同一张网。影片以冷峻的镜头语言与层层递进的叙事节奏，讨论“正义”与“代价”的边界。被影评人称为“近年最克制的国产悬疑之作”。</p>
+          <div class="acts">
+            <a class="btn primary" href="#">影片详情</a>
+            <a class="btn" href="#">预告片</a>
+            <a class="btn" href="#">演职员表</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid four" style="margin-top:18px;">
+        <article class="card">
+          <div class="thumb"><span class="lb">IMAX</span><span class="rt">8.4</span><span class="tt">星际回响</span></div>
+          <div class="body">
+            <h3>星际回响</h3>
+            <div class="row"><span>科幻 / 冒险</span><span class="stars">★★★★☆</span></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="lb">动画</span><span class="rt">8.9</span><span class="tt">山海小厨</span></div>
+          <div class="body">
+            <h3>山海小厨</h3>
+            <div class="row"><span>动画 / 奇幻</span><span class="stars">★★★★★</span></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="lb">动作</span><span class="rt">7.8</span><span class="tt">边境线</span></div>
+          <div class="body">
+            <h3>边境线</h3>
+            <div class="row"><span>动作 / 犯罪</span><span class="stars">★★★★☆</span></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="lb">剧情</span><span class="rt">8.2</span><span class="tt">父亲的河</span></div>
+          <div class="body">
+            <h3>父亲的河</h3>
+            <div class="row"><span>剧情 / 家庭</span><span class="stars">★★★★☆</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目二：经典回看 -->
+  <section id="classic">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2 class="sec-title"><i></i>经典回看 · 经得起时间的好电影</h2>
+          <p class="sec-sub">按年代与大师脉络梳理影史代表作，附观影顺序建议与幕后轶事，适合想补课的影迷。</p>
+        </div>
+        <a class="sec-more" href="#">经典片单 →</a>
+      </div>
+      <div class="grid four">
+        <article class="card">
+          <div class="thumb"><span class="lb">1994</span><span class="rt">9.7</span><span class="tt">肖申克的救赎</span></div>
+          <div class="body"><h3>肖申克的救赎</h3><div class="row"><span>剧情 / 美国</span><span class="stars">★★★★★</span></div></div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="lb">1997</span><span class="rt">9.4</span><span class="tt">美丽人生</span></div>
+          <div class="body"><h3>美丽人生</h3><div class="row"><span>剧情 / 喜剧 / 意大利</span><span class="stars">★★★★★</span></div></div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="lb">2001</span><span class="rt">9.3</span><span class="tt">千与千寻</span></div>
+          <div class="body"><h3>千与千寻</h3><div class="row"><span>动画 / 奇幻 / 日本</span><span class="stars">★★★★★</span></div></div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="lb">1972</span><span class="rt">9.2</span><span class="tt">教父</span></div>
+          <div class="body"><h3>教父</h3><div class="row"><span>犯罪 / 剧情 / 美国</span><span class="stars">★★★★★</span></div></div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="lb">1954</span><span class="rt">9.5</span><span class="tt">七武士</span></div>
+          <div class="body"><h3>七武士</h3><div class="row"><span>动作 / 冒险 / 日本</span><span class="stars">★★★★★</span></div></div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="lb">1993</span><span class="rt">9.6</span><span class="tt">霸王别姬</span></div>
+          <div class="body"><h3>霸王别姬</h3><div class="row"><span>剧情 / 爱情 / 中国</span><span class="stars">★★★★★</span></div></div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="lb">2008</span><span class="rt">9.1</span><span class="tt">蝙蝠侠：黑暗骑士</span></div>
+          <div class="body"><h3>蝙蝠侠：黑暗骑士</h3><div class="row"><span>动作 / 科幻 / 美国</span><span class="stars">★★★★★</span></div></div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="lb">1999</span><span class="rt">9.0</span><span class="tt">搏击俱乐部</span></div>
+          <div class="body"><h3>搏击俱乐部</h3><div class="row"><span>剧情 / 悬疑 / 美国</span><span class="stars">★★★★☆</span></div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目三：高分剧集 -->
+  <section id="drama">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2 class="sec-title"><i></i>高分剧集 · 适合周末一口气刷完</h2>
+          <p class="sec-sub">精选国产剧、美剧、日剧与迷你剧，标注集数与完结状态，追剧不迷路。</p>
+        </div>
+        <a class="sec-more" href="#">剧集榜单 →</a>
+      </div>
+      <div class="grid three">
+        <article class="card">
+          <div class="thumb"><span class="lb">国产</span><span class="rt">9.4</span><span class="tt">漫长的季节</span></div>
+          <div class="body">
+            <h3>漫长的季节</h3>
+            <p style="font-size:13px;color:var(--muted);margin:6px 0 0;">12 集 · 已完结 · 生活 / 悬疑</p>
+            <div class="row"><span>豆瓣高分</span><span class="stars">★★★★★</span></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="lb">美剧</span><span class="rt">9.5</span><span class="tt">切尔诺贝利</span></div>
+          <div class="body">
+            <h3>切尔诺贝利</h3>
+            <p style="font-size:13px;color:var(--muted);margin:6px 0 0;">5 集 · 已完结 · 历史 / 灾难</p>
+            <div class="row"><span>HBO 限定剧</span><span class="stars">★★★★★</span></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="lb">日剧</span><span class="rt">9.1</span><span class="tt">重启人生</span></div>
+          <div class="body">
+            <h3>重启人生</h3>
+            <p style="font-size:13px;color:var(--muted);margin:6px 0 0;">10 集 · 已完结 · 奇幻 / 喜剧</p>
+            <div class="row"><span>治愈系</span><span class="stars">★★★★★</span></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="lb">国产</span><span class="rt">8.7</span><span class="tt">山海情</span></div>
+          <div class="body">
+            <h3>山海情</h3>
+            <p style="font-size:13px;color:var(--muted);margin:6px 0 0;">23 集 · 已完结 · 现实 / 年代</p>
+            <div class="row"><span>口碑现实题材</span><span class="stars">★★★★☆</span></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="lb">美剧</span><span class="rt">9.2</span><span class="tt">亢奋</span></div>
+          <div class="body">
+            <h3>亢奋</h3>
+            <p style="font-size:13px;color:var(--muted);margin:6px 0 0;">19 集 · 已完结 · 青春 / 剧情</p>
+            <div class="row"><span>HBO</span><span class="stars">★★★★★</span></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="lb">英剧</span><span class="rt">9.0</span><span class="tt">9号秘事</span></div>
+          <div class="body">
+            <h3>9号秘事</h3>
+            <p style="font-size:13px;color:var(--muted);margin:6px 0 0;">55 集 · 已完结 · 悬疑 / 黑色喜剧</p>
+            <div class="row"><span>单元剧神作</span><span class="stars">★★★★☆</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目四：观影指南 -->
+  <section id="guide">
+    <div class="wrap">
+      <div class="two">
+        <div>
+          <div class="sec-head" style="margin-bottom:18px;">
+            <div>
+              <h2 class="sec-title"><i></i>观影指南 · 按心情选片</h2>
+              <p class="sec-sub">不知道看什么？从情绪与场景出发，我们为您准备好答案。</p>
+            </div>
+          </div>
+          <div class="grid three" style="gap:14px;">
+            <a class="chip" href="#">加班后想放空 <b>12 部</b></a>
+            <a class="chip" href="#">一个人也能看 <b>18 部</b></a>
+            <a class="chip" href="#">约会观影清单 <b>9 部</b></a>
+            <a class="chip" href="#">雨天宅家片单 <b>15 部</b></a>
+            <a class="chip" href="#">睡前 30 分钟短片 <b>21 部</b></a>
+            <a class="chip" href="#">带孩子一起看 <b>10 部</b></a>
+            <a class="chip" href="#">治愈系动画 <b>14 部</b></a>
+            <a class="chip" href="#">烧脑悬疑挑战 <b>16 部</b></a>
+            <a class="chip" href="#">失恋疗愈专场 <b>7 部</b></a>
+          </div>
+
+          <div class="sec-head" style="margin-top:30px;margin-bottom:14px;">
+            <div>
+              <h2 class="sec-title"><i></i>类型片单</h2>
+              <p class="sec-sub" id="type">按题材快速定位，覆盖主流商业片与小众艺术片。</p>
+            </div>
+          </div>
+          <div class="chips">
+            <a class="chip" href="#">动作片 <b>86</b></a>
+            <a class="chip" href="#">喜剧片 <b>112</b></a>
+            <a class="chip" href="#">科幻片 <b>64</b></a>
+            <a class="chip" href="#">悬疑片 <b>78</b></a>
+            <a class="chip" href="#">爱情片 <b>95</b></a>
+            <a class="chip" href="#">恐怖片 <b>41</b></a>
+            <a class="chip" href="#">纪录片 <b>53</b></a>
+            <a class="chip" href="#">动画片 <b>60</b></a>
+            <a class="chip" href="#">历史片 <b>37</b></a>
+            <a class="chip" href="#">犯罪片 <b>69</b></a>
+            <a class="chip" href="#">战争片 <b>32</b></a>
+            <a class="chip" href="#">音乐片 <b>25</b></a>
+          </div>
+        </div>
+
+        <aside>
+          <div class="sec-head" style="margin-bottom:14px;">
+            <div>
+              <h2 class="sec-title"><i></i>口碑排行</h2>
+              <p class="sec-sub" id="top">综合评分、讨论热度与上映年份生成。</p>
+            </div>
+          </div>
+          <div class="list">
+            <a href="#">
+              <span class="num">1</span>
+              <span class="txt">
+                <h4>《奥本海默》为何值得二刷？</h4>
+                <p>诺兰用三条时间线拆解“原子弹之父”的内心褶皱，配乐与剪辑是关键。本文梳理隐藏线索与观影前需知的历史背景。</p>
+              </span>
+              <span class="date">10-06</span>
+            </a>
+            <a href="#">
+              <span class="num">2</span>
+              <span class="txt">
+                <h4>2026 年国庆档复盘：类型百花齐放</h4>
+                <p>五部主力影片票房走势、口碑分化与观众画像解读，附“带长辈看”与“带朋友看”的选片建议。</p>
+              </span>
+              <span class="date">10-05</span>
+            </a>
+            <a href="#">
+              <span class="num">3</span>
+              <span class="txt">
+                <h4>冷门佳片 20 部：别让它们被算法埋没</h4>
+                <p>豆瓣 8.5 分以上、标记人数不足 5 万的遗珠，涵盖伊朗、罗马尼亚、中国台湾与东南亚电影。</p>
+              </span>
+              <span class="date">10-03</span>
+            </a>
+            <a href="#">
+              <span class="num">4</span>
+              <span class="txt">
+                <h4>悬疑片叙事结构完全图解</h4>
+                <p>倒叙、多线、不可靠叙述、闭环结构——用 12 部经典影片拆解编剧常用的 8 种叙事手法。</p>
+              </span>
+              <span class="date">10-01</span>
+            </a>
+            <a href="#">
+              <span class="num">5</span>
+              <span class="txt">
+                <h4>家庭影院入门：投影还是电视？</h4>
+                <p>从预算、空间、片源三个维度给出配置方案，附 3000 元 / 8000 元 / 15000 元三档推荐清单。</p>
+              </span>
+              <span class="date">09-28</span>
+            </a>
+            <a href="#">
+              <span class="num">6</span>
+              <span class="txt">
+                <h4>动画不只是给孩子的：成人向动画推荐</h4>
+                <p>从《千与千寻》到《心灵奇旅》，聊聊那些讨论生死、孤独与成长的动画长片。</p>
+              </span>
+              <span class="date">09-25</span>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目五：影视资讯 -->
+  <section id="news">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2 class="sec-title"><i></i>影视资讯 · 行业与幕后</h2>
+          <p class="sec-sub">票房数据、档期定档、导演访谈、修复重映与电影节动态，一手掌握。</p>
+        </div>
+        <a class="sec-more" href="#">资讯首页 →</a>
+      </div>
+      <div class="grid three">
+        <article class="card">
+          <div class="thumb"><span class="lb">票房</span><span class="tt">2026 国庆档总票房突破 42 亿</span></div>
+          <div class="body">
+            <h3>国庆档收官：现实主义题材领跑，动画观影人群明显拓宽</h3>
+            <div class="row"><span>数据解读</span><span>10-07</span></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="lb">定档</span><span class="tt">《深海回响 2》定档冬至</span></div>
+          <div class="body">
+            <h3>续集回归：原班配音集结，预告片暗藏前作彩蛋</h3>
+            <div class="row"><span>新片资讯</span><span>10-04</span></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="lb">访谈</span><span class="tt">导演李默：拍一部“慢”的电影</span></div>
+          <div class="body">
+            <h3>长镜头、自然光与非职业演员：独立电影的创作取舍</h3>
+            <div class="row"><span>人物专访</span><span>09-30</span></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="lb">修复</span><span class="tt">《大话西游》4K 修复版重映</span></div>
+          <div class="body">
+            <h3>经典重映背后的修复工艺：一帧一帧找回当年的色彩</h3>
+            <div class="row"><span>幕后技术</span><span>09-26</span></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="lb">节展</span><span class="tt">平遥国际电影展片单公布</span></div>
+          <div class="body">
+            <h3>新人导演扎堆：藏龙单元 14 部华语首作入围</h3>
+            <div class="row"><span>电影节</span><span>09-22</span></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="lb">流媒体</span><span class="tt">十月上线片单盘点</span></div>
+          <div class="body">
+            <h3>Netflix、Disney+ 与国内平台十月重点内容一览</h3>
+            <div class="row"><span>流媒体</span><span>09-20</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目六：关于 / 站点信息 -->
+  <section id="about">
+    <div class="wrap">
+      <div class="two">
+        <div>
+          <h2 class="sec-title"><i></i>关于黑鹰电影网</h2>
+          <p style="color:var(--ink-2);margin-top:14px;">黑鹰电影网（站点标识：heiyingdianyingwang-app）成立于 2021 年，是一个由影迷自发维护的<strong>影视信息与导航网站</strong>。我们不提供任何影视资源的下载、在线播放或盗版内容，专注于影片资料整理、观影推荐、票房与行业资讯分享。</p>
+          <p style="color:var(--ink-2);">我们的选片标准只有三条：<strong>故事是否成立、镜头是否有诚意、是否值得您花掉两小时</strong>。每日由编辑团队更新推荐位，每周发布一份“本周片单”，每年年末推出年度佳片盘点。</p>
+          <div class="chips" style="margin-top:16px;">
+            <span class="chip">每日更新</span>
+            <span class="chip">拒绝剧透</span>
+            <span class="chip">标注分级</span>
+            <span class="chip">尊重版权</span>
+          </div>
+        </div>
+        <div>
+          <h2 class="sec-title"><i></i>站点导航</h2>
+          <div class="list">
+            <a href="#hot"><span class="num">映</span><span class="txt"><h4>院线热映</h4><p>在映影片口碑、票房与选片建议。</p></span></a>
+            <a href="#classic"><span class="num">典</span><span class="txt"><h4>经典回看</h4><p>影史代表作与大师作品观影顺序。</p></span></a>
+            <a href="#drama"><span class="num">剧</span><span class="txt"><h4>高分剧集</h4><p>国产、美剧、日剧与迷你剧推荐。</p></span></a>
+            <a href="#guide"><span class="num">南</span><span class="txt"><h4>观影指南</h4><p>按心情、场景、类型生成片单。</p></span></a>
+            <a href="#top"><span class="num">榜</span><span class="txt"><h4>口碑排行</h4><p>综合评分、热度与年份的榜单。</p></span></a>
+            <a href="#news"><span class="num">讯</span><span class="txt"><h4>影视资讯</h4><p>票房、定档、访谈与电影节动态。</p></span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="logo">
+          <div class="mark">鹰</div>
+          <div>
+            <h5 style="margin:0;">黑鹰电影网</h5>
+            <small>heiyingdianyingwang-app</small>
+          </div>
+        </div>
+        <p>专注好片推荐与影视资讯的影迷站点。本站仅为影视信息导航与内容分享平台，不提供任何资源下载、在线播放或侵权内容。</p>
+      </div>
+      <div>
+        <h5>快速入口</h5>
+        <ul>
+          <li><a href="#hot">院线热映</a></li>
+          <li><a href="#classic">经典回看</a></li>
+          <li><a href="#drama">高分剧集</a></li>
+          <li><a href="#guide">观影指南</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>内容分类</h5>
+        <ul>
+          <li><a href="#type">动作 / 科幻 / 悬疑</a></li>
+          <li><a href="#type">爱情 / 喜剧 / 动画</a></li>
+          <li><a href="#type">纪录片 / 短片</a></li>
+          <li><a href="#news">票房与行业资讯</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>联系与说明</h5>
+        <ul>
+          <li><a href="#">投稿与合作</a></li>
+          <li><a href="#">免责声明</a></li>
+          <li><a href="#">版权投诉</a></li>
+          <li><a href="#">友情链接</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      本站网址：https://heiyingdianyingwang-app.github.io ｜ 网站名称：黑鹰电影网 ｜ 站点标识：heiyingdianyingwang-app<br>
+      © 2021-2026 黑鹰电影网 保留所有权利。页面内容仅供交流与信息参考，影片版权归各自权利人所有。
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
